@@ -4,6 +4,7 @@ import {View} from 'react-native'
 import {AuthContextProvider, useAuth} from '../context/authContext.js'
 // Import your global CSS file
 import "../global.css";
+import { MenuProvider } from 'react-native-popup-menu';
 
 
 const MainLayout = ()=>{
@@ -29,9 +30,11 @@ const MainLayout = ()=>{
 
 export default function RootLayout(){
     return(
+        <MenuProvider>
         <AuthContextProvider>
             <MainLayout></MainLayout>
         </AuthContextProvider>
+        </MenuProvider>
     )
 }
 

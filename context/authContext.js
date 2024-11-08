@@ -1,18 +1,20 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import {createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut} from 'firebase/auth'
 import {auth, db} from '../firebaseConfig.js'
-import { setDoc, doc } from "firebase/firestore";
+import { setDoc, doc, getDoc } from "firebase/firestore";
 export const authContext =createContext();
 
 export const AuthContextProvider= ({children})=>{
     const [user, setUser]=useState(null);
     const [isAuthenticated, setIsAuthenticated]=useState(false);
+    const [userData, setUserData] = useState(null);
 
     useEffect(()=>{
         const unsub= onAuthStateChanged(auth, (u)=>{
             if(u){
                 setIsAuthenticated(true);
                 setUser(u);
+                updateUserData(u.uid);
             }
             else{
                 setIsAuthenticated(false);
@@ -23,6 +25,21 @@ export const AuthContextProvider= ({children})=>{
        
 
     }, [])
+
+ 
+      
+const updateUserData = async (userId) => {
+    const docRef = doc(db, 'users', userId);
+    const docSnap = await getDoc(docRef);
+    if (docSnap.exists()) {
+        let data=docSnap.data();
+        setUser({...user, data:data})
+        setUserData(data);
+        console.log(userData)
+    }
+}
+
+    
 
     const login= async (email, password)=>{
         try{

@@ -1,22 +1,32 @@
-import { View, Text, Button } from 'react-native'
-import React from 'react'
+import { View, Text, Button, ActivityIndicator } from 'react-native'
+import React ,{useEffect, useState} from 'react'
 import { useRouter } from 'expo-router'
 import { useAuth } from '../../context/authContext';
+import Chatlist from '../../componets/Chatlist';
 
 const Home = () => {
-  const router=useRouter();
-  const {logout}= useAuth()
-  return (
-    <View  style={{gap:10, padding:54}} >
-      <Text>Home</Text>
-      <Button title="Signup" onPress={()=>{
-        console.log('button');
-      return  router.replace('signup')
-      }}  ></Button>
+  const [users, setUsers]=useState([3])
 
-<Button title="Sign Out" onPress={ async ()=>{
-        await logout();
-      }}  ></Button>
+  useEffect(()=>{
+    if(users?.uid)
+      fetUsers();
+  }, [])
+
+  const fetUsers=async()=>{
+    // Fetch users
+  }
+
+  return (
+    <View>
+    {users.length>0 ? (
+      <View>
+        <Text><Chatlist/></Text>
+      </View>
+    ):(
+      <View>
+      <ActivityIndicator  size='large' color="red"  />
+      </View>
+    )}
     </View>
   )
 }
