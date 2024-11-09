@@ -22,8 +22,8 @@ const HomeHeader = () => {
     const ios = Platform.OS === 'ios';
     const { top } = useSafeAreaInsets();
     const {user, userData, logout} =useAuth();
-    console.log('userses', user);
-    console.log('userData', userData);
+    // console.log('userses', user);
+    // console.log('userData', userData);
     
 
     const handleProfile=()=>{

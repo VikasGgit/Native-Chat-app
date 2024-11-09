@@ -10,16 +10,15 @@ const CustomKeyboardView = ({children}) => {
   return (
     <KeyboardAvoidingView
     behavior={ios ? 'padding' : 'height'}
-    keyboardVerticalOffset={hp(2)}
+    keyboardVerticalOffset={90}
     style={{flex:1}}
     >
         <ScrollView
         contentContainerStyle={{
-          flexGrow: 1,
-          paddingTop: hp(4),
-          paddingBottom: hp(4),
+          flex:1
         }}
-        keyboardShouldPersistTaps="handled"
+        style={{flex:1}}
+        showsVerticalScrollIndicator={false}
         >
             {children}
         </ScrollView>

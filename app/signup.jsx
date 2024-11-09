@@ -155,7 +155,7 @@ const SignUp = () => {
             <TextInput
               onChangeText={(value) => (profileRef.current = value)}
               style={{ fontSize: hp(2.5), flex: 1, color: "#333" }}
-              placeholder="Profile Name"
+              placeholder="Profile Url"
               placeholderTextColor="#888"
             />
           </View>
