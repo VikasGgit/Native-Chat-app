@@ -33,7 +33,7 @@ const updateUserData = async (userId) => {
     const docSnap = await getDoc(docRef);
     if (docSnap.exists()) {
         let data=docSnap.data();
-        setUser({...user, data:data})
+        setUser({...user, data:data, username:data.username, profileUrl:data.profileUrl , userId:data.userId});
         setUserData(data);
         console.log(userData)
     }

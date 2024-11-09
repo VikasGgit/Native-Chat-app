@@ -24,6 +24,7 @@ const HomeHeader = () => {
     const {user, userData, logout} =useAuth();
     console.log('userses', user);
     console.log('userData', userData);
+    
 
     const handleProfile=()=>{
         console.log('handleProfile called');
